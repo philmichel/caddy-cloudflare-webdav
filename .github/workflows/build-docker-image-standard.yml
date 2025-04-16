@@ -112,13 +112,13 @@ jobs:
             CADDY_VERSION=${{ env.VERSION }}
           platforms: linux/amd64
           tags: |
-            ghcr.io/${{ env.REPO_OWNER }}/caddy-cloudflare:${{ env.VERSION }}
-            ghcr.io/${{ env.REPO_OWNER }}/caddy-cloudflare:latest
+            ghcr.io/${{ env.REPO_OWNER }}/caddy-cloudflare-webdav:${{ env.VERSION }}
+            ghcr.io/${{ env.REPO_OWNER }}/caddy-cloudflare-webdav:latest
 
       - name: Clean up Docker images
         if: env.DEPENDENCIES_AVAILABILITY == 'true'
         run: |
-          docker rmi ghcr.io/${{ env.REPO_OWNER }}/caddy-cloudflare:${{ env.VERSION }} || true
+          docker rmi ghcr.io/${{ env.REPO_OWNER }}/caddy-cloudflare-webdav:${{ env.VERSION }} || true
           docker builder prune --force
 
       - name: Create GitHub Release
