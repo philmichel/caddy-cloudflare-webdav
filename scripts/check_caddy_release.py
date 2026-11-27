@@ -5,7 +5,13 @@ import sys
 
 def get_latest_caddy_release():
     try:
-        response = requests.get('https://api.github.com/repos/caddyserver/caddy/releases/latest')
+        token = os.getenv('GITHUB_TOKEN')
+        headers = {'Authorization': f'Bearer {token}'} if token else {}
+        response = requests.get(
+            'https://api.github.com/repos/caddyserver/caddy/releases/latest',
+            headers=headers,
+            timeout=30,
+        )
         response.raise_for_status()
         release = response.json()
         return release['tag_name']
