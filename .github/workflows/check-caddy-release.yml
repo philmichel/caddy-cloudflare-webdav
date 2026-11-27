@@ -26,6 +26,8 @@ jobs:
 
       - name: Check and compare Caddy release
         id: check_release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: python scripts/check_caddy_release.py
 
       - name: Update version file
